@@ -22,7 +22,7 @@
             
             <div class="container-fluid">
                 <div class="header clearfix">
-                    <nav>s
+                    <nav>
                         <ul class="nav nav-pills pull-right">
                             <li role="presentation" class="active">
                             </li>
@@ -39,11 +39,12 @@
                     <p class="lead">You have {{ outstandingList() }} / {{ totalItems }} tasks outstanding.</p>
                     <p></p>
                     <div class="row">
+                        <form ng-submit="addTask()">
                         <div class="form-group text-left"> 
                             <div class="container col-md-12">
                                 <div class="col-sm-4" data-pg-collapsed>
                                     <label class="control-label text-left" for="formInput134">Task Title</label>
-                                    <input type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..." ng-model="taskItemTitle"> 
+                                    <input  type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..." ng-model="taskItemTitle" required> 
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
@@ -52,10 +53,11 @@
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
-                                    <button class="btn btn-danger" ng-click="addTask()" type="button">Add Task</button>                                 
+                                    <input class="btn btn-danger" type="submit" value="Add Task">                                
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                    
                 </div>
@@ -73,12 +75,12 @@
                         <tbody> 
                             <tr ng-repeat="todoItem in todoList"> 
                                 <td>
-                                    <input class="control-label" type="checkbox" ng-model="todoItem.status">
+                                    <input class="control-label" type="checkbox" ng-model="todoItem.status"> 
                                 </td>
                                 <td>{{ todoItem.taskTitle }}</td> 
                                 <td>{{ todoItem.taskDescr }}</td> 
                                 <td>
-                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;">×</button>
+                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" ng-click="removeTask(todoItem.TaskNumber)">×</button> 
                                 </td>                             
                             </tr>                         
                                                   

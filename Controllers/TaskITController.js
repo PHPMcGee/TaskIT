@@ -3,15 +3,16 @@ var TaskITApp = angular.module('TaskITApp', []);
 
 TaskITApp.controller('TaskITController',function($scope){
     
-    
+    var taskNmbr = 2;
     
     $scope.todoList = [
-        {taskTitle:'Develop App',taskDescr:'Research AngularJS and GIT',status:true},
-        {taskTitle:'Do something else',taskDescr:'Stop sitting infront of computer',status:false}
+        {taskNumber:1,taskTitle:'Develop App',taskDescr:'Research AngularJS and GIT',status:true},
+        {taskNumber:2,taskTitle:'Do something else',taskDescr:'Stop sitting infront of computer',status:false}
     ];
  
      $scope.addTask = function () {
-        $scope.todoList.push({taskTitle:$scope.taskItemTitle,taskDescr:$scope.taskItemDescr,status:false});
+        taskNmbr += 1;
+        $scope.todoList.push({taskNumber:taskNmbr,taskTitle:$scope.taskItemTitle,taskDescr:$scope.taskItemDescr,status:false});
         $scope.taskItemTitle = "";
         $scope.taskItemDescr = "";
          
@@ -38,8 +39,8 @@ TaskITApp.controller('TaskITController',function($scope){
     }
     
     
-    $scope.removeTask = function () {
-              
+    $scope.removeTask = function (tester) {
+             alert(tester);
     };
 
     
