@@ -19,9 +19,10 @@
     </head>
     <body >
         <div data-ng-controller="TaskITController">
+            
             <div class="container-fluid">
                 <div class="header clearfix">
-                    <nav>
+                    <nav>s
                         <ul class="nav nav-pills pull-right">
                             <li role="presentation" class="active">
                             </li>
@@ -35,24 +36,23 @@
                 </div>
                 <div class="jumbotron">
                     <h1>Manage Tasks</h1>
-                    <p class="lead">You have done {{ totalItems }} / {{ totalItems }} tasks.</p>
+                    <p class="lead">You have {{ outstandingList() }} / {{ totalItems }} tasks outstanding.</p>
                     <p></p>
                     <div class="row">
                         <div class="form-group text-left"> 
                             <div class="container col-md-12">
                                 <div class="col-sm-4" data-pg-collapsed>
                                     <label class="control-label text-left" for="formInput134">Task Title</label>
-                                    <input data-ng-model="myTest" type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..."> 
-                                    
+                                    <input type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..." ng-model="taskItemTitle"> 
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
                                     <label class="control-label text-left" for="formInput134">Task Description</label>
-                                    <input type="text" class="form-control" id="formInput134" placeholder="Describe your task..."> 
+                                    <input type="text" class="form-control" id="formInput134" placeholder="Describe your task..." ng-model="taskItemDescr"> 
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
-                                    <button class="btn btn-danger" type="button">Add Task</button>                                 
+                                    <button class="btn btn-danger" ng-click="addTask()" type="button">Add Task</button>                                 
                                 </div>
                             </div>
                         </div>
@@ -64,37 +64,24 @@
                     <table class="table table-condensed"> 
                         <thead> 
                             <tr> 
-                                <th>#</th> 
+                                <th>Status</th>
                                 <th>Task Title</th> 
                                 <th>Task Description</th> 
-                                <th>Status</th>
                                 <th>Delete</th> 
                             </tr>                         
                         </thead>                     
                         <tbody> 
-                            <tr> 
-                                <td>1</td> 
-                                <td>Mark</td> 
-                                <td>Otto</td> 
+                            <tr ng-repeat="todoItem in todoList"> 
                                 <td>
-                                    <input class="control-label" type="checkbox" value="">
+                                    <input class="control-label" type="checkbox" ng-model="todoItem.status">
                                 </td>
+                                <td>{{ todoItem.taskTitle }}</td> 
+                                <td>{{ todoItem.taskDescr }}</td> 
                                 <td>
                                     <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;">×</button>
                                 </td>                             
                             </tr>                         
-                            <tr> 
-                                <td>2</td> 
-                                <td>Jacob</td> 
-                                <td>Thornton</td> 
-                                <td></td> 
-                            </tr>                         
-                            <tr> 
-                                <td>3</td> 
-                                <td>Larry</td> 
-                                <td>the Bird</td> 
-                                <td></td> 
-                            </tr>                         
+                                                  
                         </tbody>
                     </table>
                 </div>
