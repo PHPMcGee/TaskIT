@@ -19,7 +19,6 @@
     </head>
     <body >
         <div data-ng-controller="TaskITController">
-            {{ lol }}
             <div class="container-fluid">
                 <div class="header clearfix">
                     <nav>
@@ -36,7 +35,7 @@
                 </div>
                 <div class="jumbotron">
                     <h1>Manage Tasks</h1>
-                    <p class="lead">TaskIT allows you to manage simple daily tasks. Simply add a task below or manage it from the list.</p>
+                    <p class="lead">You have done {{ totalItems }} / {{ totalItems }} tasks.</p>
                     <p></p>
                     <div class="row">
                         <div class="form-group text-left"> 
@@ -58,7 +57,9 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
+                 
                 <div class="row marketing">
                     <table class="table table-condensed"> 
                         <thead> 
