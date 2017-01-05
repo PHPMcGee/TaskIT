@@ -1,7 +1,7 @@
 <!--
 *	Author: Morne Erasmus
 *	Assignment: BSc Mobile	Web	Applications,	Digital	Skills	Academy
-*	Student	ID:	?
+*	Student	ID:	Student	ID:	morne.erasmus@digitalskillsacademy.me
 *	Date: 2017/01/05
 *	Ref: https://docs.angularjs.org/api
 -->
@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="An app that allows you to track your tasks">
         <meta name="author" content="Morne Erasmus">
-        <title>TaskIT AngularJS TodoList</title>
+        <title>TaskIT AngularJS TaskList</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="jumbotron-narrow.css" rel="stylesheet">
         <link href="css/myStyle.css" rel="stylesheet"> <!-- Link to my style sheet -->
@@ -73,12 +73,12 @@
                             </tr>                         
                         </thead>                     
                         <tbody> 
-                            <tr data-ng-repeat="todoItem in todoList | orderBy:'status'">  <!-- Applying an orderby filter while looping through the array of objects. this ensures that completed tasks remain at the bottom of the list. -->
-                                <td><input class="control-label" type="checkbox" data-ng-model="todoItem.status"></td>  <!-- creates the checkbox item and sets whether the value is checked or not -->
-                                <td class="checked-{{todoItem.status}}">{{ todoItem.taskTitle }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
-                                <td class="checked-{{todoItem.status}}">{{ todoItem.taskDescr }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
+                            <tr data-ng-repeat="taskItem in taskList | orderBy:'status'">  <!-- Applying an orderby filter while looping through the array of objects. this ensures that completed tasks remain at the bottom of the list. -->
+                                <td><input class="control-label" type="checkbox" data-ng-model="taskItem.status"></td>  <!-- creates the checkbox item and sets whether the value is checked or not -->
+                                <td class="checked-{{taskItem.status}}">{{ taskItem.taskTitle }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
+                                <td class="checked-{{taskItem.status}}">{{ taskItem.taskDescr }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
                                 <td>
-                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" data-ng-click="removeTask(todoItem.taskID)">×</button> <!-- this removes the specific object in the array --> 
+                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" data-ng-click="removeTask(taskItem.taskID)">×</button> <!-- this removes the specific object in the array --> 
                                 </td>                             
                             </tr>                                           
                         </tbody>
