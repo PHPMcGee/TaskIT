@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "https://github.com/PHPMcGee/TaskIT.git"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+    <name>TaskIT</name>
+
+    <description>
+        A task managing app built with the AngularJS framework and deployed to android via the "phonegap build" service.
+    </description>
+
+    <author href="https://github.com/PHPMcGee/TaskIT.git" email="morne.erasmus@digitalskillsacademy.me">
+        Morne Erasmus
+    </author>
+   
+    <platform name="android">
+        <icon src="icon.png" width="180" height="180" />
+    </platform>
+
+</widget>
