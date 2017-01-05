@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html data-ng-app="TaskITApp">
+<!--
+*	Author: Morne Erasmus
+*	Assignment: BSc Mobile	Web	Applications,	Digital	Skills	Academy
+*	Student	ID:	?
+*	Date: 2017/01/05
+*	Ref: https://docs.angularjs.org/api
+-->
+
+<!DOCTYPE HTML>
+<html data-ng-app="TaskITApp"> <!-- initializes the app and linking the name to the module -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Narrow Jumbotron Template for Bootstrap</title>
-        <!-- Bootstrap core CSS -->
+        <meta name="description" content="An app that allows you to track your tasks">
+        <meta name="author" content="Morne Erasmus">
+        <title>TaskIT AngularJS TodoList</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
         <link href="jumbotron-narrow.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <link href="css/myStyle.css" rel="stylesheet"> <!-- Link to my style sheet -->
     </head>
     <body >
-        <div data-ng-controller="TaskITController">
-            
+        <div data-ng-controller="TaskITController"> <!-- this is the controller i'm using which is called TaskITController. it is stored in an external js file -->
             <div class="container-fluid">
                 <div class="header clearfix">
                     <nav>
@@ -33,38 +34,36 @@
                         </ul>
                     </nav>
                     <div>
-                    <span class="text-muted" style="font-size:15pt;">Pending(<span style="color:red;">{{ outstandingList() }}</span>) </span><span class="text-muted pull-right" style="font-size:15pt;">Total Tasks({{ totalItems }})</span>
+                        <span class="text-muted" style="font-size:15pt;">Pending(<span style="color:red;">{{ outstandingList() }}</span>)</span>  <!-- This displays the pending tasks -->
+                        <span class="text-muted pull-right" style="font-size:15pt;">Total Tasks({{ totalItems }})</span>  <!-- This displays the total tasks -->
                     </div>
                 </div>
                 <div >
-                   
-                    
                     <div class="row">
-                        <form ng-submit="addTask()">
+                        <form data-ng-submit="addTask()">  <!-- This function or method is called when the form gets submitted. Going via the form allows me to utilize html 5 validation (required)-->
                         <div class="form-group text-left"> 
                             <div class="container col-md-12">
                                 <div class="col-sm-4" data-pg-collapsed>
+                                    <br>
                                     <label class="control-label text-left" for="formInput134">Task Title</label>
-                                    <input  type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..." ng-model="taskItemTitle" required> 
+                                    <input  type="text" class="form-control" id="formInput134" placeholder="Give your task a Title..." data-ng-model="taskItemTitle" required>  <!-- binding the title input -->
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
                                     <label class="control-label text-left" for="formInput134">Task Description</label>
-                                    <input type="text" class="form-control" id="formInput134" placeholder="Describe your task..." ng-model="taskItemDescr"> 
+                                    <input type="text" class="form-control" id="formInput134" placeholder="Describe your task..." data-ng-model="taskItemDescr">   <!-- binding the description input -->
                                 </div>
                                 <br />
                                 <div class="col-sm-4">
-                                    <input class="btn btn-danger" type="submit" value="Add Task">                                
+                                    <input class="btn btn-danger" style="background-color:#808080;border-color:#808080;box-shadow: 0px 3px #707070;" type="submit" value="Add Task">                                
                                 </div>
                             </div>
                         </div>
                         </form>
                     </div>
-                   
                 </div>
-                 
                 <div class="row marketing">
-                    <table class="table table-condensed"> 
+                    <table class="table table-condensed">   <!-- using a table instead of li's, i simply like the table formatting more -->
                         <thead> 
                             <tr> 
                                 <th>Status</th>
@@ -74,35 +73,26 @@
                             </tr>                         
                         </thead>                     
                         <tbody> 
-                            <tr ng-repeat="todoItem in todoList | orderBy:'status'"> 
+                            <tr data-ng-repeat="todoItem in todoList | orderBy:'status'">  <!-- Applying an orderby filter while looping through the array of objects. this ensures that completed tasks remain at the bottom of the list. -->
+                                <td><input class="control-label" type="checkbox" data-ng-model="todoItem.status"></td>  <!-- creates the checkbox item and sets whether the value is checked or not -->
+                                <td class="checked-{{todoItem.status}}">{{ todoItem.taskTitle }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
+                                <td class="checked-{{todoItem.status}}">{{ todoItem.taskDescr }}</td>  <!-- this changes the class dynamically via use of binding so that i can style the specific table data -->
                                 <td>
-                                    <input class="control-label" type="checkbox" ng-model="todoItem.status"> 
-                                </td>
-                                <td>{{ todoItem.taskTitle }}</td> 
-                                <td>{{ todoItem.taskDescr }}</td> 
-                                <td>
-                                    <input type="hidden" ng-model="todoItem.taskID"/> {{totalLength}}
-                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" ng-click="removeTask(todoItem.taskID)">×</button> 
+                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" data-ng-click="removeTask(todoItem.taskID)">×</button> <!-- this removes the specific object in the array --> 
                                 </td>                             
-                            </tr>                         
-                                                  
+                            </tr>                                           
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-danger" aria-hidden="true" ng-click="clearTasks()">Clear Tasks</button>
+                    <button type="button" class="btn btn-danger"  aria-hidden="true" data-ng-click="clearTasks()">Clear Tasks</button> <!-- this clears all tasks on the list.(initializing the array) -->
                 </div>
                 <footer class="footer">
                     <p>&copy; morne.erasmus@digitalskillsacademy.me</p>
                 </footer>
             </div>  
         </div>
-        <!-- /container -->
-        <!-- Bootstrap core JavaScript
-    ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="Controllers/TaskITController.js"></script>
-       
     </body>
 </html>

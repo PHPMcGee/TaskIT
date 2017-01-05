@@ -1,34 +1,33 @@
+/*
+*	Author: Morne Erasmus
+*	Assignment: BSc Mobile	Web	Applications,	Digital	Skills	Academy
+*	Student	ID:	?
+*	Date: 2017/01/05
+*	Ref: https://docs.angularjs.org/api
+*/
+var TaskITApp = angular.module('TaskITApp', []); //creates the module
 
-var TaskITApp = angular.module('TaskITApp', []);
-
-TaskITApp.controller('TaskITController',function($scope){
+TaskITApp.controller('TaskITController',function($scope){ // creating the controller, i preferred not to chain it.
     
-    //$scope.totalLength = $scope.todoList.length;
-    
-    $scope.todoList = [
+    $scope.todoList = [ // creates and initializes a hard coded todolist
         {taskID:'task1',taskTitle:'Develop App',taskDescr:'Research AngularJS and GIT',status:true},
         {taskID:'task2',taskTitle:'Do something else',taskDescr:'Stop sitting infront of computer',status:false}
-    ];
-    
-    
+    ];  
  
-     $scope.addTask = function () {
+    $scope.addTask = function () {
         var num = 0;
         var taskUnique = "";
         taskUnique = "task" + ($scope.todoList.length + 1); 
         $scope.todoList.push({taskID:taskUnique,taskTitle:$scope.taskItemTitle,taskDescr:$scope.taskItemDescr,status:false});
         $scope.taskItemTitle = "";
         $scope.taskItemDescr = "";
-         
     };
-    
     
     angular.forEach($scope.todoList, function(x) {
         if(x.status == false) {
             $scope.outstandingTasks += 1;
         } 
     });
-
     
     $scope.outstandingList = function () {
        var outstandingTasks = 0;
@@ -40,8 +39,7 @@ TaskITApp.controller('TaskITController',function($scope){
             }
         });
         return outstandingTasks;
-    }
-    
+    }    
     
     $scope.removeTask = function (taskNum) {
         var findIndex = -1;
@@ -59,9 +57,4 @@ TaskITApp.controller('TaskITController',function($scope){
     $scope.clearTasks = function () {
         $scope.todoList = [];
     };
-
-    
-    
-    
 });
-  

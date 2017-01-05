@@ -1,0 +1,5 @@
+.checked-true {
+    color:dimgrey;
+    text-decoration:line-through;
+    opacity: 0.5;
+}
