@@ -74,7 +74,7 @@
                             </tr>                         
                         </thead>                     
                         <tbody> 
-                            <tr ng-repeat="todoItem in todoList"> 
+                            <tr ng-repeat="todoItem in todoList | orderBy:'status'"> 
                                 <td>
                                     <input class="control-label" type="checkbox" ng-model="todoItem.status"> 
                                 </td>
