@@ -32,12 +32,13 @@
                             </li>
                         </ul>
                     </nav>
-                    <h3 class="text-muted">TaskIT</h3>
+                    <div>
+                    <span class="text-muted" style="font-size:15pt;">Pending(<span style="color:red;">{{ outstandingList() }}</span>) </span><span class="text-muted pull-right" style="font-size:15pt;">Total Tasks({{ totalItems }})</span>
+                    </div>
                 </div>
-                <div class="jumbotron">
-                    <h1>Manage Tasks</h1>
-                    <p class="lead">You have {{ outstandingList() }} / {{ totalItems }} tasks outstanding.</p>
-                    <p></p>
+                <div >
+                   
+                    
                     <div class="row">
                         <form ng-submit="addTask()">
                         <div class="form-group text-left"> 
