@@ -80,12 +80,14 @@
                                 <td>{{ todoItem.taskTitle }}</td> 
                                 <td>{{ todoItem.taskDescr }}</td> 
                                 <td>
-                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" ng-click="removeTask(todoItem.TaskNumber)">×</button> 
+                                    <input type="hidden" ng-model="todoItem.taskID"/> {{totalLength}}
+                                    <button type="button" class="close text-left pull-left" aria-hidden="true" style="color:red;" ng-click="removeTask(todoItem.taskID)">×</button> 
                                 </td>                             
                             </tr>                         
                                                   
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-danger" aria-hidden="true" ng-click="clearTasks()">Clear Tasks</button>
                 </div>
                 <footer class="footer">
                     <p>&copy; morne.erasmus@digitalskillsacademy.me</p>
